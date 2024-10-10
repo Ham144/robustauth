@@ -1,0 +1,31 @@
+{
+	"name": "robustauth",
+	"version": "1.0.0",
+	"description": "make the comlete authentication",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"be": "nodemon backend/index.js",
+		"fe": "cd frontend && npm run dev"
+	},
+	"keywords": [
+		"express",
+		"crypto",
+		"mailtrap",
+		"nodejs"
+	],
+	"author": "m yafizham batubara",
+	"license": "ISC",
+	"devDependencies": {
+		"nodemon": "^3.1.7"
+	},
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cookie-parser": "^1.4.7",
+		"crypto": "^1.0.1",
+		"express": "^4.21.1",
+		"jsonwebtoken": "^9.0.2",
+		"mailtrap": "^3.4.0",
+		"mongoose": "^8.7.1"
+	}
+}
