@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { login, logout, register, verifyEmail } from "../controllers/auth-controller.js";
+import { forgotPassword, login, logout, register, verifyEmail } from "../controllers/auth-controller.js";
 
 const route = Router()
 
@@ -8,5 +8,6 @@ route.post("/login", login)
 route.delete("/logout", logout)
 
 route.post("/verify-email", verifyEmail)
+route.post("/forgot-password", forgotPassword)//mengerjakan ini
 
 export default route

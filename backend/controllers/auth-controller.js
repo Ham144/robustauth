@@ -4,6 +4,8 @@ import { generateVerificationCode } from "../utils/generateVerificationCode.js"
 import { generateJWTandSetCookie } from "../utils/generateJWTandSetCookie.js"
 import { sendVerificationCode } from "../mailtrap/sendVerificationEmail.js"
 import { sendWelcomeEmailVerified } from "../mailtrap/sendWelcomeEmailVerified.js"
+import { sendResetPassword } from "../mailtrap/sendResetPassword.js"
+import crypto from "crypto"
 
 export const register = async (req, res) => {
     try {
@@ -105,6 +107,30 @@ export const login = async (req, res) => {
     } catch (error) {
         console.log(`error dalam login ${error}`)
         return res.status(401).json({ success: false, message: error.message })
+    }
+}
+
+export const forgotPassword = async (req, res) => {
+    try {
+        //ambil variabel yg perlu: email, new password
+        const { email } = req.body
+        const user = await User.findOne({ email })
+        if (!user) {
+            return res.status(401).json({ success: false, message: "Email tidak ditemukan" })
+        }
+        //kirim template reset password ke email tersebut
+        const resetPasswordToken = crypto.randomBytes(32).toString("hex")
+        const resetPasswordExpire = Date.now() + 1 * 60 * 60 * 1000 //1 jam
+        //masukkan resetpasswordtoken dan expiresdatetoken ke database
+        user.resetPasswordToken = resetPasswordToken;
+        user.resetPasswordExpire = resetPasswordExpire;
+        await user.save()
+
+        await sendResetPassword(email, `${process.env.FRONTEND_URL}/reset-password?token=${resetPasswordToken}`)
+        return res.status(200).json({ success: true, message: "Silahkan cek email anda" })
+    } catch (error) {
+        res.status(401).json({ success: false, message: error.message })
+
     }
 }
 

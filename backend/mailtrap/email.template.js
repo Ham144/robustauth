@@ -78,7 +78,7 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
     <h1 style="color: white; margin: 0;">Password Reset</h1>
   </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <p>Halo,</p>
+    <p>Halo, {name}</p>
     <p>Kami telah menerima permintaan reset kata sandi. jika bukan anda yang meminta, hanya hiraukan pesan ini.</p>
     <p>Untuk mereset kata sandi anda, klik tombol di bawah ini:</p>
     <div style="text-align: center; margin: 30px 0;">
