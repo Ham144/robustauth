@@ -9,5 +9,6 @@ route.delete("/logout", logout)
 
 route.post("/verify-email", verifyEmail)
 route.post("/forgot-password", forgotPassword)//mengerjakan ini
+route.post("/reset-password/:token",)
 
 export default route
